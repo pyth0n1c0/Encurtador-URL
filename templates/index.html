@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/png"> <!-- ICON-->
+	<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+	<title>Short URL</title>
+</head>
+<body>
+	<h1>Short URL</h1>
+	<form action="" method="POST">
+		<label for="url_original">Digite a URL:<label>
+		<div class="input-data">
+			<input id="url_original" name="url_original" type="text" placeholder="Vai se fuder">
+			<img src=" {{ url_for('static', filename='send-icon.png') }}">
+		</div>
+			<label for="url_encurtada">URL Encurtada:</label>
+		<div class="output-data">
+			<input id="url_encurtada" name="url_encurtada" type="text">
+			<img src=" {{ url_for('static', filename='copy-icon.png') }}">
+		</div>
+	</form>
+</body>
+</html>
