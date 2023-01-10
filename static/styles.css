@@ -42,7 +42,10 @@ img {
  	bottom: -5px;
 	width: 20px;
 	height: 20px;
-	cursor: pointer;
 }
 
-
+img:hover {
+	width: 25px;
+	height: 25px;
+	cursor: pointer;
+}
