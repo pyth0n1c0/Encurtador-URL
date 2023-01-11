@@ -20,7 +20,7 @@ def create_database(app):
 		with app.app_context():
 			db.create_all()
 
-def __generate_shortened_url_code():
+def generate_url_code():
 	# Calcular número possível de URLs
 	len_url = randint(4, 6)
 	random_url = token_urlsafe(len_url)
@@ -40,7 +40,7 @@ def create_app():
 		if request.method == 'POST':
 			if request.form.get('url_original'):
 				url_original = request.form.get('url_original')
-				codigo_url_encurtada = __generate_shortened_url_code()
+				codigo_url_encurtada = generate_url_code()
 				url_encurtada = f'http://localhost/' + codigo_url_encurtada 
 				nova_url = URLs(url_original=url_original, codigo_url_encurtada=codigo_url_encurtada)
 				db.session.add(nova_url)
@@ -48,14 +48,6 @@ def create_app():
 
 				return render_template('index.html', url_encurtada=url_encurtada)
 		return render_template('index.html')
-
-	@app.route('/<url_code>')
-	def redirect_url(url_code):
-		print('URL CODE ->', url_code)
-		#url = User.query.filter_by(codigo_url_encurtada=url_code).first()
-		#print('URL Object ->', url)
-		#print('REDIRECT ->', url.url_original)
-		#redirect(url.url_original)
 
 	@app.route("/url/")
 	def url_detail():

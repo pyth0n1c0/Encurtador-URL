@@ -1,6 +1,5 @@
 from .app import db
 
-
 class URLs(db.Model):
 	__tablename__ = 'urls'
 
