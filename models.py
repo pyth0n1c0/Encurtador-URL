@@ -6,7 +6,7 @@ class URLs(db.Model):
 
 	id = db.Column(db.Integer, primary_key=True)
 	url_original = db.Column(db.Text)
-	url_encurtada = db.Column(db.String(100) ,unique=True)
+	codigo_url_encurtada = db.Column(db.String(100) ,unique=True)
 
 	def __repr__(self):
-		return f'<URL {self.id} {self.url_encurtada} >'
+		return f'<URL {self.id} - {self.codigo_url_encurtada}>'

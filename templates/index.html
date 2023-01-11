@@ -12,20 +12,31 @@
 	<form id="input-form" action="" method="POST">
 		<label for="url_original">Digite a URL:<label>
 		<div class="input-data">
-			<input id="url_original" name="url_original" type="text">
-			<img src=" {{ url_for('static', filename='send-icon.png') }}" onclick="submitForm()">
-		</div>
-			<label for="url_encurtada">URL Encurtada:</label>
-		<div class="output-data">
-			<input id="url_encurtada" name="url_encurtada" type="text">
-			<img src=" {{ url_for('static', filename='copy-icon.png') }}">
+			<textarea id="url_original" name="url_original" required></textarea>
+			<img id="send-input" src=" {{ url_for('static', filename='send-icon.png') }}" onclick="submitForm()">
 		</div>
 	</form>
+		<label for="url_encurtada">URL Encurtada:</label>
+		<div class="output-data">
+			<textarea id="url_encurtada" name="url_encurtada">{{url_encurtada}}</textarea>
+			<img src=" {{ url_for('static', filename='copy-icon.png') }}" onclick="copiarTexto()">
+		</div>
 	<script> 
 		function submitForm() {
         	let form = document.getElementById("input-form");
        		form.submit();
     	}
+
+    	function copiarTexto(){
+			navigator.clipboard.writeText(document.getElementById('url_encurtada').value);
+		};
+
+		var input = document.getElementById("input-form");
+		input.addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+        	event.preventDefault();
+            document.getElementById("send-input").click();
+        } });
 	</script>
 </body>
 </html>
