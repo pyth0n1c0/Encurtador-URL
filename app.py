@@ -40,18 +40,28 @@ def create_app():
 		if request.method == 'POST':
 			if request.form.get('url_original'):
 				url_original = request.form.get('url_original')
-				codigo_url_encurtada = generate_url_code()
-				url_encurtada = f'http://localhost/' + codigo_url_encurtada 
-				nova_url = URLs(url_original=url_original, codigo_url_encurtada=codigo_url_encurtada)
+				url_code = generate_url_code()
+				url_encurtada = f'http://localhost/' + url_code 
+				
+				nova_url = URLs(url_origin=url_original, url_code=url_code)
 				db.session.add(nova_url)
 				db.session.commit()
 
 				return render_template('index.html', url_encurtada=url_encurtada)
 		return render_template('index.html')
 
-	@app.route("/url/")
+	@app.route('/<url_code>')
+	def redirect_url(url_code):
+		url_object = URLs.query.filter_by(url_code=url_code).first()
+		url = url_object.url_origin.replace('\r\n', '')
+
+		if url[:4].lower() != 'http':
+			url = 'http://' + url
+		return redirect(url)
+
+	@app.route('/url/')
 	def url_detail():
-	    urls = URLs.query.all()
-	    return render_template("detail.html", urls=urls)
+		urls = URLs.query.all()
+		return render_template("detail.html", urls=urls)
 
 	return app
