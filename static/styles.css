@@ -24,6 +24,12 @@ label {
 	font-size: 20px;
 }
 
+.input-data, .output-data {
+	display: flex;
+	margin: 0;
+	margin-bottom: 10px;
+}
+
 textarea {
 	background: lightgray;
 	font-size: 15px;
@@ -44,12 +50,6 @@ textarea:focus {
 	width: 600px;
 	height: 30px;
 	border-radius: 15px;	
-}
-
-.input-data, .output-data {
-	display: flex;
-	margin: 0;
-	margin-bottom: 10px;
 }
 
 img {
