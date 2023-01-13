@@ -25,7 +25,6 @@ class ConfigProduction(Config):
 	PORT_HOST = 80
 	SQLALCHEMY_DATABASE_URI = 'mysql://root:OJgMdk2lrbvpgFXde6po@containers-us-west-47.railway.app:5988/railway' # Temporary DB
 	
-
 app_config = {
 		'development': ConfigDevelopment,
 		'testing': ConfigTesting,
